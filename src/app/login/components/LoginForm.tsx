@@ -7,6 +7,9 @@ import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { startRegistration } from '@simplewebauthn/browser';
 
+import { DfnsAuthenticator } from '@dfns/sdk'
+import { WebAuthn } from '@dfns/sdk-webauthn'
+
 import EczodexLoader from "@/components/EczodexLoader";
 import { RE_EMAIL, azureApiUrl } from "@/lib/constants";
 
@@ -54,18 +57,31 @@ const LoginForm = () => {
     setIsLoading(true);
     try {
 
-      const response = await axios({
-        method: "post",
-        url: `${azureApiUrl}/DFNS/Login`,
-        data: {
-          email: user.email,
-        },
-      });
-      console.log(response.data, '✅');
+      // const response = await axios({
+      //   method: "post",
+      //   url: `${azureApiUrl}/DFNS/Login`,
+      //   data: {
+      //     email: user.email,
+      //   },
+      // });
+      // console.log(response.data, '✅');
 
-      const response2 = await startRegistration(response.data);
+      console.log("start");
 
-      console.log(response2, '⚠️');
+      const appId = "ap-2niq8-jle8h-8e685lcsae9no8c3"
+      const rpId = "vercel.app";
+
+      const dfnsAuth = new DfnsAuthenticator({
+        appId,
+        baseUrl: "https://admin-portal-pied.vercel.app",
+        signer: new WebAuthn({ rpId }),
+      })
+      const orgId = "or-1qlte-d5mok-8s8bf57cu5aukpmj"
+      let username = user.email
+      const { token } = await dfnsAuth.login({ orgId, username});
+
+      console.log(token, 'token✅')
+      // const response2 = await startRegistration(response.data);
 
       setIsLoading(false);
     } catch (error) {
