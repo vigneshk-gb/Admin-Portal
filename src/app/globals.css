@@ -1,0 +1,114 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Plus Jakarta Sans", sans-serif normal !important;
+}
+
+body {
+  background-color: #f2f8fc;
+  font-family: "Plus Jakarta Sans", sans-serif normal;
+}
+
+@layer base {
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+  }
+}
+
+/* Scroll Bar Styling  */
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #110e2e #dfe9eb;
+}
+
+/* Chrome, Edge and Safari */
+*::-webkit-scrollbar {
+  height: 7px;
+  width: 7px;
+}
+*::-webkit-scrollbar-track {
+  border-radius: 5px;
+  background-color: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: rgba(17, 14, 46, 0.1);
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(17, 14, 46, 0.2);
+}
+
+@layer utilities {
+  @variants responsive {
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* Hide scrollbar for IE, Edge and Firefox */
+    .no-scrollbar {
+      -ms-overflow-style: none; /* IE and Edge */
+      scrollbar-width: none; /* Firefox */
+    }
+  }
+}
+
+/* gradients */
+
+.hero-heading-gradient {
+  background: linear-gradient(
+    92.07deg,
+    #36a1cf -0.25%,
+    #130f40 49.19%,
+    #5d9c6b 96.05%
+  );
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+.about-heading-gradient {
+  background: linear-gradient(90deg, #7fd7a4 0%, #79c8d1 51.92%, #2586c5 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+.step-card-border-gradient {
+  border-width: 3px;
+  border-style: solid;
+  border-image: linear-gradient(to bottom, #7fd7a5, #7fd7a500) 1 100%;
+}
+
+.beneficiary-active-wrapper {
+  display: inline-block; /* Ensure the wrapper wraps its content */
+  border-radius: 8px; /* Apply border radius to the wrapper */
+  overflow: hidden; /* Hide overflow content from rounded corners */
+}
+
+.beneficiary-active-card-gradient {
+  border-image: linear-gradient(to right, #449ecf, #68bcc7, #76c9bc, #7bd2aa) 1;
+}
+
+.analytics-active-menu-gradient {
+  border-bottom: 2px solid transparent; 
+  border-image: linear-gradient(to right, #449ecf, #68bcc7, #76c9bc, #7bd2aa);
+  border-image-slice: 1;
+  border-radius: 10px; 
+}
